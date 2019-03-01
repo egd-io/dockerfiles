@@ -25,6 +25,7 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 RUN apt-get update && apt-get install -y \
       chromium \
       chromium-l10n \
+      chromium-sandbox \
       fonts-liberation \
       fonts-roboto \
       hicolor-icon-theme \
