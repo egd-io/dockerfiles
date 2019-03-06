@@ -3,9 +3,9 @@
 # docker run -it \
 #	-v /tmp/.X11-unix:/tmp/.X11-unix \ # mount the X11 socket
 #       -v /etc/localtime:/etc/localtime:ro \
-#       -v $HOME/.config/keybase:/home/keybase/.config/keybase \ # for persistence
-#       -v $HOME/.config/Keybase:/home/keybase/.config/Keybase \ # for persistence
-#       -v $HOME/.local/share/keybase:/home/keybase/.local/share/keybase \ # for persistence
+#       -v $HOME/.config/keybase:/home/kb/.config/keybase \ # for persistence
+#       -v $HOME/.config/Keybase:/home/kb/.config/Keybase \ # for persistence
+#       -v $HOME/.local/share/keybase:/home/kb/.local/share/keybase \ # for persistence
 #	-e DISPLAY=unix$DISPLAY \
 #	--device /dev/snd \ # so we have sound
 #	--name keybase \
@@ -26,8 +26,8 @@ RUN apt update && apt install -y \
     --no-install-recommends
 
 # Add keybase user
-RUN groupadd -r keybase && useradd -r -g keybase -G audio,video keybase \
-    && mkdir /home/keybase && chown -R keybase:keybase /home/keybase
+RUN groupadd -r kb && useradd -r -g kb -G audio,video kb \
+    && mkdir /home/kb && chown -R kb:kb /home/kb
 
 # Install keybase and dependencies
 RUN apt update && apt install -y \
@@ -46,6 +46,6 @@ RUN apt update && apt install -y \
     && rm keybase_amd64.deb
 
 # Run as non privileged user
-USER keybase
+USER kb
 
 ENTRYPOINT run_keybase -g && /opt/keybase/Keybase 
