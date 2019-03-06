@@ -43,6 +43,7 @@ RUN apt update && apt install -y \
     && curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb \
     && dpkg -i keybase_amd64.deb \ 
     && rm -rf /var/lib/apt/lists/*
+    && rm keybase_amd64.deb
 
 # Run as non privileged user
 USER keybase
