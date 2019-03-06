@@ -23,9 +23,10 @@ RUN apt update && apt install -y \
     && echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | tee -a /etc/apt/sources.list.d/signal-xenial.list \
     && apt update \
     && apt install -y signal-desktop \
-    --no-install-recommends 
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
-# Add chromium user
+# Add signal user
 RUN groupadd -r signal && useradd -r -g signal -G audio,video signal \
     && mkdir /home/signal && chown -R signal:signal /home/signal
 
